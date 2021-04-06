@@ -10,12 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateWidget extends StatelessWidget {
-  final double? width;
+  final double width;
   final DateTime date;
   final TextStyle? monthTextStyle, dayTextStyle, dateTextStyle;
   final Color selectionColor;
   final DateSelectionCallback? onDateSelected;
   final String? locale;
+  final Color? originColor;
 
   DateWidget({
     required this.date,
@@ -23,33 +24,53 @@ class DateWidget extends StatelessWidget {
     required this.dayTextStyle,
     required this.dateTextStyle,
     required this.selectionColor,
-    this.width,
+    this.width = 50,
     this.onDateSelected,
     this.locale,
+    this.originColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    
     return InkWell(
       child: Container(
-        width: width,
-        margin: EdgeInsets.all(3.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          color: selectionColor,
-        ),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.only(left: 7, right: 7, ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(new DateFormat("MMM", locale).format(date).toUpperCase(), // Month
-                  style: monthTextStyle),
-              Text(date.day.toString(), // Date
-                  style: dateTextStyle),
               Text(new DateFormat("E", locale).format(date).toUpperCase(), // WeekDay
-                  style: dayTextStyle)
+                  style: TextStyle(fontSize: 14, color: Color(0xFF666666),),),
+              Container(
+                width: width,
+                height: width,
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(top: 5, bottom: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular((width/2))),
+                  color: selectionColor,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(date.day == DateTime.now().day ? '今天' : date.day.toString(), // Date
+                        style: dateTextStyle),
+                    if (originColor != null) Container(
+                      height: 5,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: originColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              
+              // Text(new DateFormat("MMM", locale).format(date).toUpperCase(), // Month
+              //     style: monthTextStyle),
             ],
           ),
         ),

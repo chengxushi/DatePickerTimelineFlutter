@@ -1,11 +1,12 @@
-
-
 import 'package:date_picker_timeline/date_widget.dart';
 import 'package:date_picker_timeline/extra/color.dart';
 import 'package:date_picker_timeline/extra/style.dart';
 import 'package:date_picker_timeline/gestures/tap.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
+import 'extra/color.dart';
+import 'extra/color.dart';
 
 class DatePicker extends StatefulWidget {
   /// Start Date in case user wants to show past dates
@@ -40,7 +41,7 @@ class DatePicker extends StatefulWidget {
   final TextStyle dateTextStyle;
 
   /// Current Selected Date
-  final DateTime?/*?*/ initialSelectedDate;
+  final DateTime? /*?*/ initialSelectedDate;
 
   /// Contains the list of inactive dates.
   /// All the dates defined in this List will be deactivated
@@ -64,7 +65,7 @@ class DatePicker extends StatefulWidget {
     this.startDate, {
     Key? key,
     this.width = 60,
-    this.height = 80,
+    this.height = 90,
     this.controller,
     this.monthTextStyle = defaultMonthTextStyle,
     this.dayTextStyle = defaultDayTextStyle,
@@ -77,7 +78,7 @@ class DatePicker extends StatefulWidget {
     this.inactiveDates,
     this.daysCount = 500,
     this.onDateChange,
-    this.locale = "en_US",
+    this.locale = "zh_CH",
   }) : assert(
             activeDates == null || inactiveDates == null,
             "Can't "
@@ -112,9 +113,9 @@ class _DatePickerState extends State<DatePicker> {
     }
 
     this.selectedDateStyle =
-      widget.dateTextStyle.copyWith(color: widget.selectedTextColor);
+        widget.dateTextStyle.copyWith(color: widget.selectedTextColor);
     this.selectedMonthStyle =
-      widget.monthTextStyle.copyWith(color: widget.selectedTextColor);
+        widget.monthTextStyle.copyWith(color: widget.selectedTextColor);
     this.selectedDayStyle =
         widget.dayTextStyle.copyWith(color: widget.selectedTextColor);
 
@@ -175,6 +176,11 @@ class _DatePickerState extends State<DatePicker> {
           // Return the Date Widget
           return DateWidget(
             date: date,
+            originColor: isDeactivated
+                ? null
+                : isSelected
+                    ? AppColors.defaultSelectionOriginColor
+                    : AppColors.defaultUnSelectionOriginColor,
             monthTextStyle: isDeactivated
                 ? deactivatedMonthStyle
                 : isSelected
