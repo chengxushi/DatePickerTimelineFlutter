@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'extra/color.dart';
-import 'extra/color.dart';
 
 class DatePicker extends StatefulWidget {
   /// Start Date in case user wants to show past dates
@@ -60,11 +59,14 @@ class DatePicker extends StatefulWidget {
 
   /// Locale for the calendar default: en_us
   final String locale;
+  
+  ///第一次是否跳转到选择的日期
+  final bool jumpToSelection;
 
   DatePicker(
     this.startDate, {
     Key? key,
-    this.width = 60,
+    this.width = 40,
     this.height = 90,
     this.controller,
     this.monthTextStyle = defaultMonthTextStyle,
@@ -79,6 +81,7 @@ class DatePicker extends StatefulWidget {
     this.daysCount = 500,
     this.onDateChange,
     this.locale = "zh_CH",
+    this.jumpToSelection = true,
   }) : assert(
             activeDates == null || inactiveDates == null,
             "Can't "
@@ -127,6 +130,11 @@ class _DatePickerState extends State<DatePicker> {
         widget.dayTextStyle.copyWith(color: widget.deactivatedColor);
 
     super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      if(widget.jumpToSelection) {
+        widget.controller!.jumpToSelection();
+      }
+    });
   }
 
   @override
@@ -276,6 +284,6 @@ class DatePickerController {
         _datePickerState!.widget.startDate.day);
 
     int offset = date.difference(startDate).inDays;
-    return (offset * _datePickerState!.widget.width) + (offset * 6);
+    return (offset * _datePickerState!.widget.width) + (offset * 11);
   }
 }
