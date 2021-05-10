@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.replay),
         onPressed: () {
-          _controller.animateToSelection();
+          _controller.setSelectDate(DateTime(2021, 4,1));
         },
       ),
         appBar: AppBar(
@@ -89,5 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ));
+    
   }
 }

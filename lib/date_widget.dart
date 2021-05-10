@@ -54,7 +54,7 @@ class DateWidget extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(date.day == DateTime.now().day ? '今天' : date.day.toString(), // Date
+                  Text((date.year == DateTime.now().year && date.month == DateTime.now().month && date.day == DateTime.now().day) ? '今天' : date.day.toString(), // Date
                       style: dateTextStyle),
                   if (originColor != null) Container(
                     height: 5,

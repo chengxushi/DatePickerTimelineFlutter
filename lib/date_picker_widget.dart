@@ -242,6 +242,14 @@ class DatePickerController {
     _datePickerState = state;
   }
 
+  //设置选择的日期
+  void setSelectDate(DateTime date){
+    _datePickerState!.setState(() {
+      _datePickerState!._currentDate = date;
+    });
+    jumpToSelection();
+  }
+
   void jumpToSelection() {
     assert(_datePickerState != null,
         'DatePickerController is not attached to any DatePicker View.');
