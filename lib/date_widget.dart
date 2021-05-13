@@ -37,12 +37,12 @@ class DateWidget extends StatelessWidget {
     
     return InkWell(
       child: Container(
-        padding: EdgeInsets.only(left: 5.5, right: 5.5,),
+        padding: EdgeInsets.only(left: 5.0, right: 5.0,),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(new DateFormat("E", locale).format(date).toUpperCase(), // WeekDay
+            Text(DateFormat("E", locale).format(date).toUpperCase().substring(1), // WeekDay
                 style: TextStyle(fontSize: 14, color: Color(0xFF666666),),),
             Container(
               width: width,
