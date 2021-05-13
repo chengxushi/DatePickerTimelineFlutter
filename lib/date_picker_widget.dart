@@ -184,21 +184,17 @@ class _DatePickerState extends State<DatePicker> {
           // Return the Date Widget
           return DateWidget(
             date: date,
-            originColor: isDeactivated
-                ? null
-                : isSelected
-                    ? AppColors.defaultSelectionOriginColor
-                    : AppColors.defaultUnSelectionOriginColor,
+            originColor:  isSelected
+                ? AppColors.defaultSelectionOriginColor
+                : AppColors.defaultUnSelectionOriginColor,
             monthTextStyle: isDeactivated
                 ? deactivatedMonthStyle
                 : isSelected
                     ? selectedMonthStyle
                     : widget.monthTextStyle,
-            dateTextStyle: isDeactivated
-                ? deactivatedDateStyle
-                : isSelected
-                    ? selectedDateStyle
-                    : widget.dateTextStyle,
+            dateTextStyle: isSelected
+                ? selectedDateStyle
+                : widget.dateTextStyle,
             dayTextStyle: isDeactivated
                 ? deactivatedDayStyle
                 : isSelected
@@ -208,9 +204,11 @@ class _DatePickerState extends State<DatePicker> {
             locale: widget.locale,
             selectionColor:
                 isSelected ? widget.selectionColor : Colors.transparent,
+            isDeactivated: isDeactivated,
             onDateSelected: (selectedDate) {
               // Don't notify listener if date is deactivated
-              if (isDeactivated) return;
+              //设置所有日期都可点击
+              // if (isDeactivated) return;
 
               // A date is selected
               if (widget.onDateChange != null) {

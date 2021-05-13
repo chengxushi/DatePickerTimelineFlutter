@@ -17,6 +17,7 @@ class DateWidget extends StatelessWidget {
   final DateSelectionCallback? onDateSelected;
   final String? locale;
   final Color? originColor;
+  final bool isDeactivated;
 
   DateWidget({
     required this.date,
@@ -28,6 +29,7 @@ class DateWidget extends StatelessWidget {
     this.onDateSelected,
     this.locale,
     this.originColor,
+    this.isDeactivated = true,
   });
 
   @override
@@ -56,12 +58,12 @@ class DateWidget extends StatelessWidget {
                 children: [
                   Text((date.year == DateTime.now().year && date.month == DateTime.now().month && date.day == DateTime.now().day) ? '今天' : date.day.toString(), // Date
                       style: dateTextStyle),
-                  if (originColor != null) Container(
+                  Container(
                     height: 5,
                     width: 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: originColor,
+                      color: !isDeactivated ? originColor : Colors.transparent,
                     ),
                   ),
                 ],
