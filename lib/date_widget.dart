@@ -42,8 +42,13 @@ class DateWidget extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(DateFormat("E", locale).format(date).toUpperCase().substring(1), // WeekDay
-                style: TextStyle(fontSize: 14, color: Color(0xFF666666),),),
+            Text(
+              DateFormat("E", locale).format(date).toUpperCase().substring(1),
+              style: TextStyle(
+                fontSize: 12,
+                color: Color(0xFF666666),
+              ),
+            ),
             Container(
               width: width,
               height: width,

@@ -47,9 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title!),
         ),
+        backgroundColor: Colors.white,
         body: Container(
           padding: EdgeInsets.all(20.0),
-          color: Colors.blueGrey[100],
+          color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -68,11 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 120,
                   controller: _controller,
                   initialSelectedDate: DateTime.now(),
-                  selectionColor: Colors.blue,
+                  selectionColor: Color(0xFF007EFF),
                   selectedTextColor: Colors.white,
                   daysCount: 30,
-                  dateTextStyle: TextStyle(fontSize: 14, color: Colors.black),
-                  
+                  dateTextStyle: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.bold),
                   inactiveDates: [
                     DateTime.now().add(Duration(days: 3)),
                     DateTime.now().add(Duration(days: 4)),
