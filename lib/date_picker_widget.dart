@@ -247,7 +247,7 @@ class DatePickerController {
     _datePickerState!.setState(() {
       _datePickerState!._currentDate = date;
     });
-    _datePickerState!._controller.jumpTo(0.0);
+    _datePickerState!._controller.jumpTo(_calculateDateOffset(date));
   }
 
   void jumpToSelection() {
